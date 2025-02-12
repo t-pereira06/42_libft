@@ -18,7 +18,7 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Pull Docker Image from GHCR
-        run: docker pull ghcr.io/tpereira-06/ubuntu-norminette:latest
+        run: docker pull ghcr.io/t-pereira06/ubuntu-norminette:latest
 
       - name: Run Norminette inside Container
         run: |
