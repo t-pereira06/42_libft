@@ -1,0 +1,22 @@
+name: Run Norminette Check
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  norminette:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Pull Docker Image from GHCR
+        run: docker pull ghcr.io/tpereira-06/ubuntu-norminette:latest
+
+      - name: Run Norminette inside Container
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/app ghcr.io/tpereira-06/ubuntu-norminette:latest norminette /app
