@@ -22,4 +22,4 @@ jobs:
 
       - name: Run Norminette inside Container
         run: |
-          docker run --rm -v ${{ github.workspace }}:/app ghcr.io/tpereira-06/ubuntu-norminette:latest norminette /app
+          docker run --rm -v ${{ github.workspace }}:/app ghcr.io/t-pereira06/ubuntu-norminette:latest norminette /app
