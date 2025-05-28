@@ -17,7 +17,7 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Pull Docker Image from GHCR
-        run: docker pull ghcr.io/t-pereira06/ubuntu-norminette:latest
+        run: docker pull ghcr.io/t-pereira06/ubuntu-docker:latest
 
   norminette:
     needs: setup
@@ -26,7 +26,7 @@ jobs:
       - name: Run Norminette inside Container
         run: |
           docker run --rm \
-          -v ${{ github.workspace }}:/app/libft ghcr.io/t-pereira06/ubuntu-norminette:latest norminette /app/libft || exit 1
+          -v ${{ github.workspace }}:/app/libft ghcr.io/t-pereira06/ubuntu-docker:latest norminette /app/libft || exit 1
 
   tests:
     needs: norminette
@@ -39,7 +39,7 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}:/app \
             -w /app \
-            ghcr.io/t-pereira06/ubuntu-gtest:latest \
+            ghcr.io/t-pereira06/ubuntu-docker:latest \
             bash -c "make" || exit 1
 
       - name: Run Tests
@@ -47,5 +47,5 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}:/app \
             -w /app \
-            ghcr.io/t-pereira06/ubuntu-gtest:latest \
+            ghcr.io/t-pereira06/ubuntu-docker:latest \
             bash -c "./run_tests" || exit 1
