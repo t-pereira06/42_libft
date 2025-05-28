@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 11:12:39 by tsodre-p          #+#    #+#             */
-/*   Updated: 2022/11/09 14:20:09 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:42:14 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	const char	*csrc;
 	int			i;
 
-	if (!dest && !src)
+	if ((!dest || !src) && n > 0)
 	{
 		return (NULL);
 	}

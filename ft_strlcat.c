@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:54:42 by tsodre-p          #+#    #+#             */
-/*   Updated: 2022/11/09 17:13:01 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:26:52 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,22 @@ size_t	ft_strlcat(char *dest, char *src, size_t size)
 	size_t	dest_size;
 	size_t	src_size;
 
-	i = 0;
-	if (size == 0)
-		return (ft_strlen(src));
+	if (!src)
+		return (0);
+	if (!dest)
+		return (0);
 	dest_size = ft_strlen(dest);
 	src_size = ft_strlen(src);
 	if (size <= dest_size)
-		return (src_size + size);
-	while (dest_size < (size - 1) && src[i] != '\0')
+		return (size + src_size);
+	i = 0;
+	while (src[i] && (dest_size + i) < (size - 1))
 	{
-		dest[dest_size] = src[i];
+		dest[dest_size + i] = src[i];
 		i++;
-		dest_size++;
 	}
-	dest[dest_size] = '\0';
-	return (src_size + ft_strlen(dest) - i);
+	dest[dest_size + i] = '\0';
+	return (dest_size + src_size);
 }
 
 /*int	main(void)

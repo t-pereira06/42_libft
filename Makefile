@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+         #
+#    By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 14:26:29 by tsodre-p          #+#    #+#              #
-#    Updated: 2022/11/07 16:02:46 by tsodre-p         ###   ########.fr        #
+#    Updated: 2025/05/28 21:10:55 by tsodre-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,15 @@ AR = ar rcs
 OBJ = $(FUNCS:%.c=%.o)
 BONUS_OBJ = $(BONUS:%.c=%.o)
 
-all: $(NAME)
+# === GoogleTest ===
+CXXTESTS = g++
+TEST_DIR = tests
+TEST_SRC = $(wildcard $(TEST_DIR)/*.cpp)
+TEST_BIN = run_tests
+GTEST_FLAGS = -lgtest -lgtest_main -pthread
+# ==================
+
+all: $(NAME) tests
 
 $(NAME): $(OBJ)
 		@$(AR) $(NAME) $(OBJ)
@@ -43,8 +51,14 @@ compile: bonus
 clean:
 		@$(RM) $(OBJ) $(BONUS_OBJ)
 
-fclean: clean
+fclean: clean testclean
 		@$(RM) $(NAME)
+
+tests: $(NAME)
+	$(CXXTESTS) $(CFLAG) $(TEST_SRC) -I. -L. -lft -o $(TEST_BIN) $(GTEST_FLAGS)
+
+testclean:
+	@$(RM) $(TEST_BIN)
 
 re: fclean all
 

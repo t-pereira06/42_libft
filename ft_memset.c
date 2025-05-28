@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 10:36:59 by tsodre-p          #+#    #+#             */
-/*   Updated: 2022/11/03 10:37:10 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:46:19 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 void	*ft_memset(void *str, int c, size_t n)
 {
 	unsigned char	*p;
+
+	if (!str && n > 0)
+		return (NULL);
 
 	p = str;
 	while (n--)

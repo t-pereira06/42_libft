@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:14:03 by tsodre-p          #+#    #+#             */
-/*   Updated: 2022/11/07 15:14:09 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2025/05/28 12:43:11 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memmove(void *dest, void *src, size_t n)
 {
-	if (!dest && !src)
+	if ((!dest || !src) && n > 0)
 		return (NULL);
 	if (src < dest)
 	{

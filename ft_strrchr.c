@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:54:32 by tsodre-p          #+#    #+#             */
-/*   Updated: 2022/11/04 11:54:33 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:36:39 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ char	*ft_strrchr(const char *str, int c)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = ft_strlen(str);
 	while (i >= 0)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:14:23 by tsodre-p          #+#    #+#             */
-/*   Updated: 2022/11/03 14:14:40 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:30:13 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ size_t	ft_strlcpy(char *dest, char *src, size_t size)
 {
 	size_t	i;
 
+	if (!src)
+		return (0);
+	if (!dest)
+		return (0);
 	i = 0;
 	if (size != 0)
 	{

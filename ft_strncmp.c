@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:54:39 by tsodre-p          #+#    #+#             */
-/*   Updated: 2022/11/10 17:15:49 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2025/05/28 20:34:49 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
 	int		i;
 
+	if (!str1 && !str2)
+		return (0);
+	if (!str1)
+		return (-1); // or any convention
+	if (!str2)
+		return (1);
 	i = 0;
 	if (n == 0)
 		return (0);
