@@ -39,7 +39,7 @@ jobs:
             -v ${{ github.workspace }}:/app \
             -w /app \
             ghcr.io/t-pereira06/ubuntu-docker:latest \
-            bash -c "./run_tests" || exit 1
+            bash -c "./tests/bin/run_tests" || exit 1
 
       - name: Run Tests and Upload Coverage to Codecov
         run: |

@@ -6,7 +6,7 @@
 #    By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 14:26:29 by tsodre-p          #+#    #+#              #
-#    Updated: 2025/05/29 00:14:25 by tsodre-p         ###   ########.fr        #
+#    Updated: 2025/05/29 00:16:29 by tsodre-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,6 @@ testclean:
 	@$(RM) $(TEST_BIN)
 
 coverage:
-	./tests/bin/run_tests
 	lcov --capture --directory . --output-file coverage.info --ignore-errors mismatch
 	lcov --remove coverage.info '*/tests/*' '/usr/*' --output-file coverage.info
 
