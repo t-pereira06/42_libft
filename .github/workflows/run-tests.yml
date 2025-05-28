@@ -40,3 +40,18 @@ jobs:
             -w /app \
             ghcr.io/t-pereira06/ubuntu-docker:latest \
             bash -c "./run_tests" || exit 1
+
+      - name: Run Tests and Upload Coverage to Codecov
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/app \
+            -w /app \
+            -e CODECOV_TOKEN=${{ secrets.CODECOV_TOKEN }} \
+            ghcr.io/t-pereira06/ubuntu-docker:latest \
+            bash -c "
+              ./run_tests &&
+              lcov --capture --directory . --output-file coverage.info &&
+              curl -Os https://uploader.codecov.io/latest/linux/codecov &&
+              chmod +x codecov &&
+              ./codecov -t \$CODECOV_TOKEN
+            "

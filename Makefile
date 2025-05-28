@@ -6,7 +6,7 @@
 #    By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 14:26:29 by tsodre-p          #+#    #+#              #
-#    Updated: 2025/05/28 21:10:55 by tsodre-p         ###   ########.fr        #
+#    Updated: 2025/05/28 23:49:36 by tsodre-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 CC = cc -g
 RM = rm -f
 CFLAG = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fprofile-arcs -ftest-coverage
 AR = ar rcs
 
 OBJ = $(FUNCS:%.c=%.o)
@@ -55,10 +56,14 @@ fclean: clean testclean
 		@$(RM) $(NAME)
 
 tests: $(NAME)
-	$(CXXTESTS) $(CFLAG) $(TEST_SRC) -I. -L. -lft -o $(TEST_BIN) $(GTEST_FLAGS)
+	$(CXXTESTS) $(CFLAGS) $(TEST_SRC) -I. -L. -lft -o $(TEST_BIN) $(GTEST_FLAGS) -fprofile-arcs -ftest-coverage
 
 testclean:
 	@$(RM) $(TEST_BIN)
+
+coverage:
+	lcov --capture --directory . --output-file coverage.info
+	lcov --remove coverage.info '*/tests/*' '/usr/*' --output-file coverage.info
 
 re: fclean all
 
