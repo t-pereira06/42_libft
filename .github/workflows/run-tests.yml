@@ -49,8 +49,7 @@ jobs:
             -e CODECOV_TOKEN=${{ secrets.CODECOV_TOKEN }} \
             ghcr.io/t-pereira06/ubuntu-docker:latest \
             bash -c "
-              ./run_tests &&
-              lcov --capture --directory . --output-file coverage.info &&
+              make coverage &&
               curl -Os https://uploader.codecov.io/latest/linux/codecov &&
               chmod +x codecov &&
               ./codecov -t \$CODECOV_TOKEN

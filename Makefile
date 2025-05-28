@@ -6,7 +6,7 @@
 #    By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 14:26:29 by tsodre-p          #+#    #+#              #
-#    Updated: 2025/05/28 23:49:36 by tsodre-p         ###   ########.fr        #
+#    Updated: 2025/05/29 00:14:25 by tsodre-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 CC = cc -g
 RM = rm -f
 CFLAG = -Wall -Wextra -Werror
-CFLAGS = -Wall -Wextra -Werror -fprofile-arcs -ftest-coverage
+CFLAGS = -Wall -Wextra -Werror -fprofile-arcs -ftest-coverage -g
 AR = ar rcs
 
 OBJ = $(FUNCS:%.c=%.o)
@@ -34,7 +34,8 @@ BONUS_OBJ = $(BONUS:%.c=%.o)
 CXXTESTS = g++
 TEST_DIR = tests
 TEST_SRC = $(wildcard $(TEST_DIR)/*.cpp)
-TEST_BIN = run_tests
+BIN_DIR = tests/bin
+TEST_BIN = $(BIN_DIR)/run_tests
 GTEST_FLAGS = -lgtest -lgtest_main -pthread
 # ==================
 
@@ -54,15 +55,20 @@ clean:
 
 fclean: clean testclean
 		@$(RM) $(NAME)
+		rm -rf $(BIN_DIR)
+		find . -name "*.gcda" -delete
+		find . -name "*.gcno" -delete
 
 tests: $(NAME)
+	mkdir -p $(BIN_DIR)
 	$(CXXTESTS) $(CFLAGS) $(TEST_SRC) -I. -L. -lft -o $(TEST_BIN) $(GTEST_FLAGS) -fprofile-arcs -ftest-coverage
 
 testclean:
 	@$(RM) $(TEST_BIN)
 
 coverage:
-	lcov --capture --directory . --output-file coverage.info
+	./tests/bin/run_tests
+	lcov --capture --directory . --output-file coverage.info --ignore-errors mismatch
 	lcov --remove coverage.info '*/tests/*' '/usr/*' --output-file coverage.info
 
 re: fclean all
