@@ -69,13 +69,19 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: dummy
           path: .gitignore
 
       - name: Checkout Repository
         uses: actions/checkout@v4
+
+      - name: Download coverage report
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage-report
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v2
