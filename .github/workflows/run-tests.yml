@@ -57,18 +57,3 @@ jobs:
           files: ./coverage.info
           slug: t-pereira06/42_libft
           fail_ci_if_error: true
-
-      - name: Upload coverage-report to GitHub Pages artifact
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: coverage-report
-
-  deploy:
-    needs: tests
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
