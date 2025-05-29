@@ -57,7 +57,7 @@ jobs:
             -w /app \
             -e CODECOV_TOKEN=${{ secrets.CODECOV_TOKEN }} \
             ghcr.io/t-pereira06/ubuntu-docker:latest \
-            bash -c "make coverage"
+            bash -c "make coverage && ls -la && find . -name '*coverage*'"
 
       - name: Upload to Codecov
         uses: codecov/codecov-action@v5
