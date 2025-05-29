@@ -6,7 +6,7 @@
 #    By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/02 14:26:29 by tsodre-p          #+#    #+#              #
-#    Updated: 2025/05/29 00:16:29 by tsodre-p         ###   ########.fr        #
+#    Updated: 2025/05/29 12:01:42 by tsodre-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,12 +56,14 @@ clean:
 fclean: clean testclean
 		@$(RM) $(NAME)
 		rm -rf $(BIN_DIR)
+		sudo rm -rf coverage-report
+		sudo rm -f coverage.info
 		find . -name "*.gcda" -delete
 		find . -name "*.gcno" -delete
 
 tests: $(NAME)
 	mkdir -p $(BIN_DIR)
-	$(CXXTESTS) $(CFLAGS) $(TEST_SRC) -I. -L. -lft -o $(TEST_BIN) $(GTEST_FLAGS) -fprofile-arcs -ftest-coverage
+	$(CXXTESTS) $(CFLAGS) $(TEST_SRC) -I. -L. -lft -o $(TEST_BIN) $(GTEST_FLAGS)
 
 testclean:
 	@$(RM) $(TEST_BIN)
@@ -69,6 +71,7 @@ testclean:
 coverage:
 	lcov --capture --directory . --output-file coverage.info --ignore-errors mismatch
 	lcov --remove coverage.info '*/tests/*' '/usr/*' --output-file coverage.info
+	genhtml coverage.info --output-directory coverage-report
 
 re: fclean all
 
