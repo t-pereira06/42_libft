@@ -9,6 +9,9 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
 
     steps:
       - name: Checkout Repository
@@ -58,36 +61,11 @@ jobs:
           slug: t-pereira06/42_libft
           fail_ci_if_error: true
 
-  deploy:
-    needs: tests
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - uses: actions/upload-artifact@v4
-        with:
-          name: dummy
-          path: .gitignore
-
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Download coverage report
-        uses: actions/download-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage-report
-
-      - name: Upload GitHub Pages artifact
+      - name: Upload coverage-report to GitHub Pages
         uses: actions/upload-pages-artifact@v2
         with:
           path: coverage-report
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - name: Deploy GitHub Pages
+        id: deploy
         uses: actions/deploy-pages@v2
