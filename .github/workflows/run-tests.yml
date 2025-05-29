@@ -72,12 +72,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Download coverage report
-        uses: actions/download-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage-report
-
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
