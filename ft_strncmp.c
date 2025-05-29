@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 11:54:39 by tsodre-p          #+#    #+#             */
-/*   Updated: 2025/05/28 20:34:49 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2025/05/29 12:12:28 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_strncmp(const char *str1, const char *str2, size_t n)
 	if (!str1 && !str2)
 		return (0);
 	if (!str1)
-		return (-1); // or any convention
+		return (-1);
 	if (!str2)
 		return (1);
 	i = 0;
