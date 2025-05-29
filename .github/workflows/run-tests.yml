@@ -69,6 +69,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
+      - uses: actions/upload-artifact@v3
+        with:
+          name: dummy
+          path: .gitignore
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
