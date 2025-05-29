@@ -1,4 +1,4 @@
-name: Run Norminette and Tests
+name: Run Norminette, Tests and deploy coverage report
 
 on:
   push:
